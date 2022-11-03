@@ -1,9 +1,7 @@
 package com.example.developmentbooks;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BookBasket {
 
@@ -33,8 +31,24 @@ public class BookBasket {
 
 
     public double getBookTotalPrice(List<Book> books){
-        int quantity = books.size();
-        return BOOK_PRICE*quantity - this.discountRates.get(quantity)*BOOK_PRICE;
+        int quantity = 0;
+        int totalPrice=0;
+        booksCountMap=getBooksCountMap(books);
+        while (booksCountMap.size()>0)
+        {
+            Set<Book> toBeRemoved = new HashSet<>();
+            for (Book key : booksCountMap.keySet())
+            {
+                if (booksCountMap.get(key)==1)
+                    toBeRemoved.add(key);
+                else
+                    booksCountMap.put(key, booksCountMap.get(key)-1);
+            }
+            quantity += toBeRemoved.size();
+            totalPrice+=BOOK_PRICE*quantity - (this.discountRates.get(quantity)*(BOOK_PRICE*quantity));
+            booksCountMap.keySet().removeAll(toBeRemoved);
+        }
+        return totalPrice;
     }
 
 }
