@@ -29,4 +29,8 @@ Run the Main method in DevelopmentBooksMain.java by running
 mvn exec:java
 Alternatively, you can run the main method in Application.java in your chosen IDE, e.g. IntelliJ
 
+## More information
+
+for the frontend I had never done react so I didn't do it, I just used the java console interface. But right now I'm starting a mobile application and I'm learning react and flutter
+
 
