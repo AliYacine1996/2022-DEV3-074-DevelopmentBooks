@@ -11,6 +11,7 @@ public class BookBasket {
 
     private Map<Integer, Double> discountRates =  Map.of(1, 0.0, 2, 0.05, 3, 0.1, 4, 0.2, 5, 0.25);
 
+    private List<Integer> discountGroups;
     private Map<Book, Integer> getBooksCountMap(List<Book> books){
         booksCountMap = new HashMap<>();
         for (Book book: books)
@@ -28,14 +29,13 @@ public class BookBasket {
 
 
     }
+    private List<Integer> getDiscountGroups(Map<Book, Integer> booksCountMap)
+    {
+        discountGroups = new ArrayList<>();
 
-
-    public double getBookTotalPrice(List<Book> books){
-        int quantity = 0;
-        int totalPrice=0;
-        booksCountMap=getBooksCountMap(books);
         while (booksCountMap.size()>0)
         {
+            discountGroups.add(booksCountMap.size());
             Set<Book> toBeRemoved = new HashSet<>();
             for (Book key : booksCountMap.keySet())
             {
@@ -44,9 +44,19 @@ public class BookBasket {
                 else
                     booksCountMap.put(key, booksCountMap.get(key)-1);
             }
-            quantity += toBeRemoved.size();
-            totalPrice+=BOOK_PRICE*quantity - (this.discountRates.get(quantity)*(BOOK_PRICE*quantity));
             booksCountMap.keySet().removeAll(toBeRemoved);
+        }
+        return discountGroups;
+    }
+
+    public double getBookTotalPrice(List<Book> books){
+        int totalPrice = 0;
+        booksCountMap = getBooksCountMap(books);
+        discountGroups = getDiscountGroups(booksCountMap);
+        for (Integer quantity : discountGroups)
+        {
+            double discountedGroupPrice = (BOOK_PRICE - this.discountRates.get(quantity)*BOOK_PRICE)*quantity;
+            totalPrice += discountedGroupPrice;
         }
         return totalPrice;
     }
