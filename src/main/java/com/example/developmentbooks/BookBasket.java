@@ -9,9 +9,14 @@ public class BookBasket {
 
     private Map<Book, Integer> booksCountMap;
 
-    private Map<Integer, Double> discountRates =  Map.of(1, 0.0, 2, 0.05, 3, 0.1, 4, 0.2, 5, 0.25);
+    private Map<Integer, Double> discountRates ;
 
     private List<Integer> discountGroups;
+
+    public BookBasket() {
+        this.discountRates =  Map.of(1, 0.0, 2, 0.05, 3, 0.1, 4, 0.2, 5, 0.25);
+    }
+
     private Map<Book, Integer> getBooksCountMap(List<Book> books){
         booksCountMap = new HashMap<>();
         for (Book book: books)
@@ -61,6 +66,13 @@ public class BookBasket {
         }
         return discountGroups;
     }
+
+
+    /**
+     * method who return the totalPrice with discount
+     * @param books the list of books the customer wants to buy
+     * @return totalPrice it's the price with discount
+     */
     public double getBookTotalPrice(List<Book> books){
         double totalPrice = 0;
         booksCountMap = getBooksCountMap(books);
