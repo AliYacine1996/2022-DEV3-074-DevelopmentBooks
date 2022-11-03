@@ -20,6 +20,10 @@ Project is created with:
 ## Setup
 git clone https://github.com/AliYacine1996/2022-DEV3-074-DevelopmentBooks
 
+cd 2022-DEV3-074-DevelopmentBooks/
+
+git checkout master
+
 Clean and build the project, run the command:
 mvn install
 
