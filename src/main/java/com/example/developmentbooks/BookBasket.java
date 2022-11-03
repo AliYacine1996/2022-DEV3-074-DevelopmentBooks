@@ -49,10 +49,22 @@ public class BookBasket {
         return discountGroups;
     }
 
-    public double getBookTotalPrice(List<Book> books){
-        int totalPrice = 0;
-        booksCountMap = getBooksCountMap(books);
+    private List<Integer> getOptimizedDiscountGroups(Map<Book, Integer> booksCountMap)
+    {
         discountGroups = getDiscountGroups(booksCountMap);
+        while (discountGroups.contains(3) && discountGroups.contains(5))
+        {
+            discountGroups.remove((Integer)3);
+            discountGroups.remove((Integer)5);
+            discountGroups.add(4);
+            discountGroups.add(4);
+        }
+        return discountGroups;
+    }
+    public double getBookTotalPrice(List<Book> books){
+        double totalPrice = 0;
+        booksCountMap = getBooksCountMap(books);
+        discountGroups = getOptimizedDiscountGroups(booksCountMap);
         for (Integer quantity : discountGroups)
         {
             double discountedGroupPrice = (BOOK_PRICE - this.discountRates.get(quantity)*BOOK_PRICE)*quantity;
