@@ -16,9 +16,10 @@ This project is The application allows you to calculate the price of any imagina
 Project is created with:
 * Java 17
 * Spring 2.7.5
+* React 18.2.0
 	
 ## Setup
-git clone https://github.com/AliYacine1996/2022-DEV3-074-DevelopmentBooks
+git clone https://github.com/AliYacine1996/2022-DEV3-074-DevelopmentBooks.git
 
 cd 2022-DEV3-074-DevelopmentBooks/
 
@@ -32,6 +33,10 @@ This will also generate a jar file with all the dependencies which we will run o
 Run the Main method in DevelopmentBooksApplication.java by running
 mvn exec:java
 Alternatively, you can run the main method in Application.java in your chosen IDE, e.g. IntelliJ
+
+clone the projet react with the command git clone https://github.com/AliYacine1996/2022-DEV3-074-DevelopmentBooks-React.git
+npm install
+npm start "launch localhost:3000"
 
 ## More information
 
