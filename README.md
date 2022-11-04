@@ -29,7 +29,7 @@ mvn install
 
 This will also generate a jar file with all the dependencies which we will run once it has been created.
 
-Run the Main method in DevelopmentBooksMain.java by running
+Run the Main method in DevelopmentBooksApplication.java by running
 mvn exec:java
 Alternatively, you can run the main method in Application.java in your chosen IDE, e.g. IntelliJ
 
